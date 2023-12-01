@@ -9,7 +9,8 @@ import { sendContactMsg, sendRoomMsg } from './services/sendMessage.ts'
 import { string2utf8 } from './utils/string2utf8.ts'
 
 const app = express()
-
+app.use(express.urlencoded({ extended: true, limit: '10mb' }))
+app.use(express.json({ limit: '10mb' }))
 const bot = WechatyBuilder.build({
   name: 'test-bot',
   puppet: 'wechaty-puppet-wechat',
@@ -33,9 +34,9 @@ bot
 app.get('/0', async (req, res) => {
   if (req.query.name || req.query.alias) {
     if (req.query.content) {
-      const content = string2utf8(req.query.content?.toString())
-      const name = string2utf8(req.query.name?.toString())
-      const alias = string2utf8(req.query.alias?.toString())
+      const content = string2utf8(req.query.content as string)
+      const name = string2utf8(req.query.name as string)
+      const alias = string2utf8(req.query.alias as string)
       await sendContactMsg(bot, content, alias, name)
       res.send('联系人消息成功')
     }
@@ -51,8 +52,8 @@ app.get('/0', async (req, res) => {
 app.get('/1', async (req, res) => {
   if (req.query.name) {
     if (req.query.content) {
-      const content = string2utf8(req.query.content?.toString())
-      const name = string2utf8(req.query.name?.toString())
+      const content = string2utf8(req.query.content as string)
+      const name = string2utf8(req.query.name as string)
       await sendRoomMsg(bot, content, name)
       res.send('群消息发送成功')
     }

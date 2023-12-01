@@ -35,17 +35,18 @@ pnpm dev
 
 ## 🌟 Send Message
 ```bash
-# 发送好友消息
+# 发送好友消息（以下命令行支持在windows里发送）
 
 # 根据好友昵称发送消息
 curl 'http://127.0.0.1:3000/0?name=好友名称&content=测试消息'
 # 根据好友备注发送消息，需要设置好友备注名
-curl 'http://127.0.0.1:3000/0?alias=好友备注&content=测试消息'
+curl 'http://127.0.0.1:3000/0?alias=小郑&content=测试测试'
 
 # 发送群消息
 
-curl 'http http://127.0.0.1:3000/1?name=群名称&content=测试消息'
+curl 'http://127.0.0.1:3000/1?name=浙江大学&content=测试消息'
 ```
+> 注意发送群消息，需要在robotConfig.whiteRoomList里设置你需要接收的群名称
 
 ## 😇 演示
 

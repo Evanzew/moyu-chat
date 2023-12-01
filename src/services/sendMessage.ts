@@ -10,7 +10,6 @@ export async function sendContactMsg(bot: Wechaty, content: string, alias?: stri
 
   try {
     const contact = await bot.Contact.find(query)
-
     if (contact)
       contact.say(content)
   }
@@ -20,11 +19,8 @@ export async function sendContactMsg(bot: Wechaty, content: string, alias?: stri
 }
 
 export async function sendRoomMsg(bot: Wechaty, content: string, topic: string) {
-  const query: Record<string, string> = {
-    topic,
-  }
   try {
-    const room = await bot.Room.find(query)
+    const room = await bot.Room.find({ topic })
 
     if (room)
       room.say(content)
