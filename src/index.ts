@@ -31,7 +31,7 @@ bot
   .then(() => log.info('开始运行...'))
   .catch(e => log.error('StarterBot', e))
 
-app.get('/0', async (req, res) => {
+app.get('/chat', async (req, res) => {
   if (req.query.name || req.query.alias) {
     if (req.query.content) {
       const content = string2utf8(req.query.content as string)
@@ -49,7 +49,7 @@ app.get('/0', async (req, res) => {
   }
 })
 
-app.get('/1', async (req, res) => {
+app.get('/group', async (req, res) => {
   if (req.query.name) {
     if (req.query.content) {
       const content = string2utf8(req.query.content as string)
